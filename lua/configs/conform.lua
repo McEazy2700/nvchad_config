@@ -1,8 +1,9 @@
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
-    css = { {"biomejs", "prettierd", "prettier"} },
-    html = { {"biomejs", "prettierd", "prettier"} },
+    python = { "black" },
+    css = { { "biomejs", "prettierd", "prettier" } },
+    html = { { "biomejs", "prettierd", "prettier" } },
   },
 
   format_on_save = {

@@ -8,6 +8,7 @@ return {
         "vimdoc",
         "html",
         "css",
+        "svelte",
         "typescript",
         "javascript",
         "graphql",
