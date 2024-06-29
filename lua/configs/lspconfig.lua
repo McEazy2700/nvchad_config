@@ -19,6 +19,7 @@ function MergeTables(t1, t2)
 end
 
 -- CONFIGURATION --
+
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
@@ -48,10 +49,34 @@ local lsp_configs = {
 -- lsps with default config
 for _, lsp in ipairs(servers) do
   local base_config = {
-    on_attach = on_attach,
+    on_attach = function(client)
+      on_attach(client)
+      local map = vim.keymap.set
+      map("n", "gr", "<cmd>Telescope lsp_references<cr>", { desc = "Lsp References" })
+      map("n", "gd", "<cmd>Telescope lsp_definitions<cr>", { desc = "Lsp Definitions" })
+      map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", { desc = "Lsp Implementations" })
+      map("n", "gx", "<cmd>Telescope diagnostics bufnr=0<cr>", { desc = "Lsp Diagnostics" })
+      map("n", "lx", "<cmd>Telescope diagnostics<cr>", { desc = "Lsp Diagnostics" })
+      map("n", "lr", function()
+        require("nvchad_ui.renamer").open()
+      end, { desc = "Lsp Rename" })
+      map("n", "lf", function()
+        vim.lsp.buf.format { async = true }
+      end, { desc = "Lsp Format" })
+      map("n", "la", vim.lsp.buf.code_action, { desc = "Lsp Code action" })
+      map("n", "[d", function()
+        vim.diagnostic.goto_prev()
+        vim.diagnostic.open_float()
+      end, { desc = "Prev lsp Diagnostics" })
+      map("n", "]d", function()
+        vim.diagnostic.goto_next()
+        vim.diagnostic.open_float()
+      end, { desc = "Next lsp Diagnostics" })
+    end,
     on_init = on_init,
     capabilities = capabilities,
   }
+
   if lsp_configs[lsp] ~= nil then
     local merged = MergeTables(base_config, lsp_configs[lsp])
     lspconfig[lsp].setup(merged)

@@ -18,12 +18,6 @@ return {
             background = "Normal",
           },
         },
-        winbar = {
-          enabled = true,
-          name_formatter = function(term) --  term: Terminal
-            return term.count
-          end,
-        },
       }
     end,
   },
