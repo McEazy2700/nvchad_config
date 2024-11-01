@@ -13,7 +13,7 @@ local servers = {
   "pyright",
   "emmet_ls",
   "dockerls",
-  "tsserver",
+  "ts_ls",
   "tailwindcss",
   "emmet_language_server",
   "docker_compose_language_service",
@@ -80,10 +80,3 @@ rt.setup {
     capabilities = nvlsp.capabilities,
   },
 }
-
--- configuring single server, example: typescript
--- lspconfig.tsserver.setup {
---   on_attach = nvlsp.on_attach,
---   on_init = nvlsp.on_init,
---   capabilities = nvlsp.capabilities,
--- }

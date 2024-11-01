@@ -101,59 +101,71 @@ local plugins = {
     end,
   },
   { "nvim-treesitter/nvim-treesitter-context", lazy = false },
-  -- { "github/copilot.vim", lazy = false },
-  -- {
-  --   "zbirenbaum/copilot.lua",
-  --   -- Lazy load when event occurs. Events are triggered
-  --   -- as mentioned in:
-  --   -- https://vi.stackexchange.com/a/4495/20389
-  --   lazy = false,
-  --   event = "InsertEnter",
-  --   -- You can also have it load at immediately at
-  --   -- startup by commenting above and uncommenting below:
-  --   -- lazy = false
-  --   opts = {
-  --     suggestion = {
-  --       auto_trigger = true,
-  --     },
-  --   },
-  -- },
-  -- {
-  --   "jackMort/ChatGPT.nvim",
-  --   event = "VeryLazy",
-  --   config = function()
-  --     require("chatgpt").setup {
-  --       api_key_cmd = "pass show openai/personal",
-  --     }
-  --   end,
-  --   dependencies = {
-  --     "MunifTanjim/nui.nvim",
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-telescope/telescope.nvim",
-  --   },
-  -- },
+  { "github/copilot.vim", lazy = false },
+  {
+    "zbirenbaum/copilot.lua",
+    -- Lazy load when event occurs. Events are triggered
+    -- as mentioned in:
+    -- https://vi.stackexchange.com/a/4495/20389
+    lazy = false,
+    event = "InsertEnter",
+    -- You can also have it load at immediately at
+    -- startup by commenting above and uncommenting below:
+    -- lazy = false
+    opts = {
+      suggestion = {
+        auto_trigger = true,
+      },
+    },
+  },
+  {
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup {
+        api_key_cmd = "pass show openai/personal",
+      }
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+  },
   {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-      require("configs.harpoon")
+      require "configs.harpoon"
     end,
     lazy = false,
   },
   -- To make a plugin not be loaded
-  -- {
-  --   "NvChad/nvim-colorizer.lua",
-  --   enabled = false
-  -- },
+  {
+    "NvChad/nvim-colorizer.lua",
+    enabled = false,
+  },
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup {
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+      }
+    end,
+    lazy = false,
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
+  },
 
   -- All NvChad plugins are lazy-loaded by default
   -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
   -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
-  -- {
-  --   "mg979/vim-visual-multi",
-  --   lazy = false,
-  -- }
+  {
+    "mg979/vim-visual-multi",
+    lazy = false,
+  },
 }
 
 return plugins
