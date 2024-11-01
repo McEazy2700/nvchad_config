@@ -101,37 +101,37 @@ local plugins = {
     end,
   },
   { "nvim-treesitter/nvim-treesitter-context", lazy = false },
-  { "github/copilot.vim", lazy = false },
-  {
-    "zbirenbaum/copilot.lua",
-    -- Lazy load when event occurs. Events are triggered
-    -- as mentioned in:
-    -- https://vi.stackexchange.com/a/4495/20389
-    lazy = false,
-    event = "InsertEnter",
-    -- You can also have it load at immediately at
-    -- startup by commenting above and uncommenting below:
-    -- lazy = false
-    opts = {
-      suggestion = {
-        auto_trigger = true,
-      },
-    },
-  },
-  {
-    "jackMort/ChatGPT.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("chatgpt").setup {
-        api_key_cmd = "pass show openai/personal",
-      }
-    end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-  },
+  -- { "github/copilot.vim", lazy = false },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   -- Lazy load when event occurs. Events are triggered
+  --   -- as mentioned in:
+  --   -- https://vi.stackexchange.com/a/4495/20389
+  --   lazy = false,
+  --   event = "InsertEnter",
+  --   -- You can also have it load at immediately at
+  --   -- startup by commenting above and uncommenting below:
+  --   -- lazy = false
+  --   opts = {
+  --     suggestion = {
+  --       auto_trigger = true,
+  --     },
+  --   },
+  -- },
+  -- {
+  --   "jackMort/ChatGPT.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("chatgpt").setup {
+  --       api_key_cmd = "pass show openai/personal",
+  --     }
+  --   end,
+  --   dependencies = {
+  --     "MunifTanjim/nui.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-telescope/telescope.nvim",
+  --   },
+  -- },
   {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
