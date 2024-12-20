@@ -76,7 +76,7 @@ end
 local rt = require "rust-tools"
 rt.setup {
   server = {
-    on_attach = nvlsp.on_attach,
+    on_attach = on_attach,
     capabilities = nvlsp.capabilities,
   },
 }
